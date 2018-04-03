@@ -23,6 +23,7 @@ import org.gradle.kotlin.dsl.SettingsScriptApi
 import org.gradle.kotlin.dsl.fileOperationsFor
 
 import kotlin.script.extensions.SamWithReceiverAnnotations
+import kotlin.script.templates.ScriptTemplateAdditionalCompilerArguments
 import kotlin.script.templates.ScriptTemplateDefinition
 
 
@@ -34,6 +35,7 @@ import kotlin.script.templates.ScriptTemplateDefinition
 @ScriptTemplateDefinition(
     resolver = PrecompiledScriptDependenciesResolver::class,
     scriptFilePattern = "^(settings|.+\\.settings)\\.gradle\\.kts$")
+@ScriptTemplateAdditionalCompilerArguments(["-Xjsr305=strict"])
 @SamWithReceiverAnnotations("org.gradle.api.HasImplicitReceiver")
 @GradleDsl
 abstract class PrecompiledSettingsScript(target: Settings) : SettingsScriptApi(target) {
